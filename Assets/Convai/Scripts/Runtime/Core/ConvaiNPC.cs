@@ -253,8 +253,8 @@ namespace Convai.Scripts.Runtime.Core
 
         private void InitializeComponents()
         {
-            _convaiChatUIHandler = FindObjectOfType<ConvaiChatUIHandler>();
-            _convaiCrosshairHandler = FindObjectOfType<ConvaiCrosshairHandler>();
+            _convaiChatUIHandler = FindFirstObjectByType<ConvaiChatUIHandler>();
+            _convaiCrosshairHandler = FindFirstObjectByType<ConvaiCrosshairHandler>();
             _characterAnimator = GetComponent<Animator>();
             AudioManager = gameObject.AddComponent<ConvaiNPCAudioManager>();
             narrativeDesignManager = GetComponent<NarrativeDesignManager>();

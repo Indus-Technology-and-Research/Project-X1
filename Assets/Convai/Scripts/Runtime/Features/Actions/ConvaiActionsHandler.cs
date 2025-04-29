@@ -43,7 +43,7 @@ namespace Convai.Scripts.Runtime.Features
         private void Awake()
         {
             // Find the global action settings object in the scene
-            _interactablesData = FindObjectOfType<ConvaiInteractablesData>();
+            _interactablesData = FindFirstObjectByType<ConvaiInteractablesData>();
 
             // Check if the global action settings object is missing
             if (_interactablesData == null)

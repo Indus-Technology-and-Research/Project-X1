@@ -53,7 +53,7 @@ namespace Convai.Scripts.Runtime.Core
             ConvaiAPIKeySetup.GetAPIKey(out _apiKey);
 
             // Find and store a reference to the ConvaiChatUIHandler component in the scene.
-            _chatUIHandler = FindObjectOfType<ConvaiChatUIHandler>();
+            _chatUIHandler = FindFirstObjectByType<ConvaiChatUIHandler>();
         }
 
         private void Start()

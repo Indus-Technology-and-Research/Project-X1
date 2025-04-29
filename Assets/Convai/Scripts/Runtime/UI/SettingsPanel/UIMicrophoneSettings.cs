@@ -103,7 +103,7 @@ namespace Convai.Scripts.Runtime.UI
                 PermissionCallbacks callbacks = new();
                 callbacks.PermissionGranted += PermissionCallbacks_PermissionGranted;
                 callbacks.PermissionDenied += s => ShowNoMicrophoneDetectedNotification();
-                callbacks.PermissionDeniedAndDontAskAgain += s => ShowNoMicrophoneDetectedNotification();
+                //callbacks.PermissionDenied += s => ShowNoMicrophoneDetectedNotification();
                 Permission.RequestUserPermission(Permission.Microphone, callbacks);
             }
 

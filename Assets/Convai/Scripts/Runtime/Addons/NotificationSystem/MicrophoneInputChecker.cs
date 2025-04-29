@@ -21,7 +21,7 @@ namespace Convai.Scripts.Runtime.Addons
         private void Awake()
         {
             // Find and assign the TalkButtonDurationChecker instance in the scene.
-            _talkButtonDurationChecker = FindObjectOfType<TalkButtonDurationChecker>();
+            _talkButtonDurationChecker = FindFirstObjectByType<TalkButtonDurationChecker>();
         }
 
         /// <summary>

@@ -31,7 +31,7 @@ namespace Convai.Scripts.Runtime.Addons
 
         private void Awake()
         {
-            _uiAppearanceSettings = FindObjectOfType<UIAppearanceSettings>();
+            _uiAppearanceSettings = FindFirstObjectByType<UIAppearanceSettings>();
         }
 
         /// <summary>
