@@ -34,10 +34,10 @@ namespace Convai.Scripts.Runtime.UI
             foreach (ConvaiInteractablesData.Character eachCharacter in _interactablesData.Characters)
                 _interactableReferences[eachCharacter.gameObject] = eachCharacter.Name;
 
-            foreach (GameObject gameObject in _interactableReferences.Keys )
-            {
-                Debug.LogWarning($"OBJECTS FOUND: {gameObject.name}");
-            }
+            //foreach (GameObject gameObject in _interactableReferences.Keys )
+            //{
+            //    Debug.LogWarning($"OBJECTS FOUND: {gameObject.name}");
+            //}
         }
 
         /// <summary>
