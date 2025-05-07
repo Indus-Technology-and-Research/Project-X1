@@ -4,6 +4,7 @@ using Convai.Scripts.Runtime.Features;
 using Convai.Scripts.Runtime.LoggerSystem;
 using Meta.XR.ImmersiveDebugger;
 using UnityEngine;
+using Oculus.Interaction;
 
 namespace Convai.Scripts.Runtime.UI
 {
@@ -18,8 +19,9 @@ namespace Convai.Scripts.Runtime.UI
         private Camera _camera;
         [DebugMember]
         private Dictionary<GameObject, string> _interactableReferences;
-
         private ConvaiInteractablesData _interactablesData;
+        public RayInteractor rayInteractor;
+
 
         private void Awake()
         {
@@ -33,11 +35,6 @@ namespace Convai.Scripts.Runtime.UI
                 _interactableReferences[eachObject.gameObject] = eachObject.Name;
             foreach (ConvaiInteractablesData.Character eachCharacter in _interactablesData.Characters)
                 _interactableReferences[eachCharacter.gameObject] = eachCharacter.Name;
-
-            //foreach (GameObject gameObject in _interactableReferences.Keys )
-            //{
-            //    Debug.LogWarning($"OBJECTS FOUND: {gameObject.name}");
-            //}
         }
 
         /// <summary>
@@ -49,15 +46,13 @@ namespace Convai.Scripts.Runtime.UI
             if (_interactablesData == null || _camera == null) return "None";
 
             Vector3 centerOfScreen = new(0.5f, 0.5f, 0);
-            if (Physics.Raycast(_camera.ViewportPointToRay(centerOfScreen), out RaycastHit hit))
+            if (Physics.Raycast(rayInteractor.Ray, out RaycastHit hit))
             {
                 _interactablesData.DynamicMoveTargetIndicator.position = hit.point;
                 string reference = FindInteractableReference(hit.transform.gameObject);
-                ConvaiLogger.DebugLog($"Player is looking at: {reference}", ConvaiLogger.LogCategory.Actions);
-                ConvaiLogger.DebugLog($"Currently is looking at: {hit.transform.gameObject.name}", ConvaiLogger.LogCategory.Actions);
+                ConvaiLogger.DebugLog($"Player is pointing at: {reference}", ConvaiLogger.LogCategory.Actions);
                 return reference;
             }
-
             return "None";
         }
 

@@ -13,6 +13,9 @@ public class HandPinchInputController : MonoBehaviour
     private bool _isSettingsPanelActive = false;
     private ConvaiNPC _currentActiveNPC;
 
+    [SerializeField]
+    private Animator SolorSystemAnimator;
+
     private void OnEnable()
     {
         ConvaiNPCManager.Instance.OnActiveNPCChanged += ConvaiNPCManager_OnActiveNPCChanged;
@@ -39,16 +42,19 @@ public class HandPinchInputController : MonoBehaviour
     private void HandleTalkHand()
     {
         if (_currentActiveNPC == null) return;
+        if (_talkHand == null) return;
         
-        if (_isSettingsPanelActive) return;
+        //if (_isSettingsPanelActive) return;
 
         bool currentlyPinching = HasPinched(_talkHand);
 
         if (currentlyPinching)
         {
+            
             if (!_isPinchingTalkHand)
             {
                 Debug.Log("Talk hand pinched");
+                SolorSystemAnimator.speed = 0f;
                 _isPinchingTalkHand = true;
                 HandleVoiceListening(true);
             }
@@ -58,6 +64,7 @@ public class HandPinchInputController : MonoBehaviour
             if (_isPinchingTalkHand)
             {
                 Debug.Log("Talk hand unpinched");
+                SolorSystemAnimator.speed = 1f;
                 _isPinchingTalkHand = false;
                 HandleVoiceListening(false);
             }
@@ -66,6 +73,7 @@ public class HandPinchInputController : MonoBehaviour
 
     private void HandleSettingsPanelHand()
     {
+        if(_settingsPanelHand == null) return;
         bool currentlyPinching = HasPinched(_settingsPanelHand);
         _isSettingsPanelActive = _settingsPanel.gameObject.activeSelf;
 
